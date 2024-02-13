@@ -52,7 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(
                 height: 24,
               ),
+
+              //BlocConsumer = BlocBuilder + BlocConsumer
               BlocConsumer<CounterCubit, CounterState>(
+
+                //listener
                 listener: (context, state) {
           if (state.wasIncremented == true) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -65,7 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ));
           }
         },
-                  builder: (context, state) {
+              //builder 
+          builder: (context, state) {
                 if (state.counterValue < 0) {
                   return Text(
                     'BRB , NEgATIVE' + state.counterValue.toString(),
