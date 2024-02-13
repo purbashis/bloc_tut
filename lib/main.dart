@@ -42,8 +42,18 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: BlocListener<CounterCubit, CounterState>(
-        listener: (context, state) {
+      body:  Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'You have pushed the button this many times:',
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              BlocConsumer<CounterCubit, CounterState>(
+                listener: (context, state) {
           if (state.wasIncremented == true) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text('Incremented!'),
@@ -55,17 +65,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ));
           }
         },
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              const SizedBox(
-                height: 24,
-              ),
-              BlocBuilder<CounterCubit, CounterState>(
                   builder: (context, state) {
                 if (state.counterValue < 0) {
                   return Text(
@@ -111,8 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ),
+      );
       // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    
   }
 }
